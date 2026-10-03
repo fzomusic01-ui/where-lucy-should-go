@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fzo — Where Should Fzo Go?</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        header {
+            height: 70px;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 40px;
+        }
+
+        .content {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+        }
+
+        .image-section {
+            width: 45%;
+            flex-shrink: 0;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .form-section {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        h1 {
+            font-size: 42px;
+            line-height: 1.1;
+            margin: 0 0 18px;
+            letter-spacing: -1.5px;
+        }
+
+        .description {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 35px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        input {
+            width: 100%;
+            height: 52px;
+            padding: 0 15px;
+            border: 1px solid #d5d5d5;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus {
+            border-color: #111111;
+        }
+
+        .city-container {
+            position: relative;
+        }
+
+        .city-list {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #dddddd;
+            border-radius: 7px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .city {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eeeeee;
+            cursor: pointer;
+        }
+
+        .city:last-child {
+            border-bottom: none;
+        }
+
+        .city:hover {
+            background: #f5f5f5;
+        }
+
+        .city-name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .country {
+            color: #777777;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .searching {
+            color: #777777;
+            cursor: default;
+        }
+
+        .searching:hover {
+            background: white;
+        }
+
+        .selected {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 14px;
+            background: #f1f8f3;
+            border: 1px solid #c9e6d1;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            height: 54px;
+            border: none;
+            border-radius: 7px;
+            background: #19a463;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #148951;
+        }
+
+        button:disabled {
+            background: #aaaaaa;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .success {
+            color: #16834e;
+        }
+
+        .error {
+            color: #c62828;
+        }
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 0 22px;
+            }
+
+            .page {
+                padding: 40px 22px;
+            }
+
+            .content {
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .image-section {
+                width: 100%;
+            }
+
+            .form-section {
+                width: 100%;
+                max-width: none;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Carisa Hendrix</div>
+    </header>
+
+    <main class="page">
+
+        <div class="content">
+
+            <div class="image-section">
+                <img src="fzo.jpg" alt="Fzo">
+            </div>
+
+            <div class="form-section">
+
+                <h1>Where Should Lucy Go?</h1>
+
+                <p class="description">
+                    Vote for Lucy Darling to perform in your city.
+                    Your vote helps us decide where to take the show,
+                    and we'll make sure you're the first to know about tickets.
+                </p>
+
+                <div class="field">
+                    <label for="name">Name *</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your name"
+                        autocomplete="name"
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="email">Email address *</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="field">
+
+                    <label for="citySearch">
+                        Where should Lucy go? *
+                    </label>
+
+                    <div class="city-container">
+
+                        <input
+                            type="text"
+                            id="citySearch"
+                            placeholder="Search for a city..."
+                            autocomplete="off"
+                        >
+
+                        <div
+                            id="cityList"
+                            class="city-list"
+                        ></div>
+
+                    </div>
+
+                    <div
+                        id="selected"
+                        class="selected"
+                    >
+                        Selected city:
+                        <strong id="selectedCity"></strong>
+                    </div>
+
+                </div>
+
+                <button
+                    id="voteButton"
+                    onclick="placeVote()"
+                >
+                    Place Your Vote
+                </button>
+
+                <div id="message"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://ratohvpkbhoxswopsvvg.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_oQZLnFdQwblP9QM93Sw9aQ_SG5ZFFcT";
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        /* ================================
+           CITY SEARCH
+        ================================= */
+
+        const citySearch =
+            document.getElementById("citySearch");
+
+        const cityList =
+            document.getElementById("cityList");
+
+        let selectedCity = "";
+
+        let searchTimeout;
+
+
+        citySearch.addEventListener(
+            "input",
+            function () {
+
+                const search =
+                    citySearch.value.trim();
+
+                selectedCity = "";
+
+                document.getElementById(
+                    "selected"
+                ).style.display = "none";
+
+                clearTimeout(searchTimeout);
+
+
+                if (search.length < 2) {
+
+                    cityList.style.display = "none";
+
+                    return;
+                }
+
+
+                cityList.innerHTML = `
+                    <div class="city searching">
+                        Searching for cities...
+                    </div>
+                `;
+
+                cityList.style.display = "block";
+
+
+                searchTimeout =
+                    setTimeout(
+                        function () {
+                            searchCities(search);
+                        },
+                        700
+                    );
+
+            }
+        );
+
+
+        async function searchCities(search) {
+
+            try {
+
+                const url =
+                    "https://nominatim.openstreetmap.org/search" +
+                    "?q=" +
+                    encodeURIComponent(search) +
+                    "&format=jsonv2" +
+                    "&addressdetails=1" +
+                    "&limit=10";
+
+
+                const response =
+                    await fetch(url, {
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    });
+
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Search request failed"
+                    );
+                }
+
+
+                const results =
+                    await response.json();
+
+
+                cityList.innerHTML = "";
+
+
+                if (!results.length) {
+
+                    cityList.innerHTML = `
+                        <div class="city searching">
+                            No cities found.
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                results.forEach(
+                    function (place) {
+
+                        const address =
+                            place.address || {};
+
+
+                        const cityName =
+                            address.city ||
+                            address.town ||
+                            address.village ||
+                            address.municipality ||
+                            place.name;
+
+
+                        const country =
+                            address.country || "";
+
+
+                        const cityElement =
+                            document.createElement("div");
+
+                        cityElement.className = "city";
+
+
+                        const cityTitle =
+                            document.createElement("div");
+
+                        cityTitle.className = "city-name";
+
+                        cityTitle.textContent =
+                            cityName;
+
+
+                        const countryName =
+                            document.createElement("div");
+
+                        countryName.className = "country";
+
+                        countryName.textContent =
+                            country;
+
+
+                        cityElement.appendChild(cityTitle);
+
+                        cityElement.appendChild(countryName);
+
+
+                        cityElement.addEventListener(
+                            "click",
+                            function () {
+
+                                selectedCity =
+                                    cityName +
+                                    ", " +
+                                    country;
+
+
+                                citySearch.value =
+                                    selectedCity;
+
+
+                                document.getElementById(
+                                    "selectedCity"
+                                ).textContent =
+                                    selectedCity;
+
+
+                                document.getElementById(
+                                    "selected"
+                                ).style.display =
+                                    "block";
+
+
+                                cityList.style.display =
+                                    "none";
+
+                            }
+                        );
+
+
+                        cityList.appendChild(cityElement);
+
+                    }
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                cityList.innerHTML = `
+                    <div class="city searching">
+                        Search unavailable.
+                        Please try again.
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        /* ================================
+           PLACE VOTE
+        ================================= */
+
+        async function placeVote() {
+
+            const name =
+                document.getElementById(
+                    "name"
+                ).value.trim();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            const voteButton =
+                document.getElementById(
+                    "voteButton"
+                );
+
+
+            message.className = "";
+
+
+            /* CHECK NAME */
+
+            if (!name) {
+
+                message.textContent =
+                    "Please enter your name.";
+
+                message.className =
+                    "error";
+
+                return;
+            }
+
+
+            /* CHECK EMAIL */
+
+            if (!email) {
+
+                message.textContent =
+                    "Please enter your email address.";
+
+                message.className =
+                    "error";
+
+                return;
+            }
+
+
+            /* CHECK EMAIL FORMAT */
+
+            if (!email.includes("@")) {
+
+                message.textContent =
+                    "Please enter a valid email address.";
+
+                message.className =
+                    "error";
+
+                return;
+            }
+
+
+            /* CHECK CITY */
+
+            if (!selectedCity) {
+
+                message.textContent =
+                    "Please search for and select a city.";
+
+                message.className =
+                    "error";
+
+                return;
+            }
+
+
+            /* SUBMITTING */
+
+            voteButton.disabled = true;
+
+            voteButton.textContent =
+                "Submitting...";
+
+
+            try {
+
+                const { data, error } =
+                    await supabaseClient
+                        .from("VOTES")
+                        .insert([
+                            {
+                                name: name,
+                                email: email,
+                                city: selectedCity
+                            }
+                        ]);
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                /* SUCCESS */
+
+                message.textContent =
+                    "Thank you! Your vote has been recorded.";
+
+                message.className =
+                    "success";
+
+
+                /* CLEAR FORM */
+
+                document.getElementById(
+                    "name"
+                ).value = "";
+
+                document.getElementById(
+                    "email"
+                ).value = "";
+
+                document.getElementById(
+                    "citySearch"
+                ).value = "";
+
+
+                selectedCity = "";
+
+
+                document.getElementById(
+                    "selected"
+                ).style.display = "none";
+
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "Something went wrong. Please try again.";
+
+                message.className =
+                    "error";
+
+            }
+
+
+            voteButton.disabled = false;
+
+            voteButton.textContent =
+                "Place Your Vote";
+
+        }
+
+
+        /* CLOSE CITY LIST WHEN CLICKING OUTSIDE */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    !event.target.closest(
+                        ".city-container"
+                    )
+                ) {
+
+                    cityList.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
